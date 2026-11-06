@@ -1,0 +1,120 @@
+/**
+ * Design tokens — Asistente DazNova
+ * Tema oscuro, cristal y acentos fríos. Todo lo visual se define aquí;
+ * ningún componente debe usar colores o medidas literales.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Superficies ---- */
+  --bg-void: #05070c;
+  --bg-base: #080b12;
+  --bg-raised: #0d1119;
+  --bg-sunken: #04060a;
+
+  --glass-bg: rgba(255, 255, 255, 0.045);
+  --glass-bg-strong: rgba(255, 255, 255, 0.075);
+  --glass-border: rgba(255, 255, 255, 0.085);
+  --glass-border-strong: rgba(255, 255, 255, 0.16);
+  --glass-highlight: rgba(255, 255, 255, 0.12);
+  --glass-blur: 18px;
+
+  /* ---- Texto ---- */
+  --text-primary: #e9edf6;
+  --text-secondary: #a3adc2;
+  --text-muted: #6b7488;
+  --text-inverse: #05070c;
+
+  /* ---- Acentos ---- */
+  --accent-cyan: #4cc9f0;
+  --accent-violet: #7b61ff;
+  --accent-magenta: #f72585;
+  --accent-gradient: linear-gradient(135deg, #4cc9f0 0%, #7b61ff 55%, #f72585 100%);
+  --accent-glow: 0 0 24px rgba(76, 201, 240, 0.35);
+
+  /* ---- Semánticos ---- */
+  --success: #3ddc97;
+  --warning: #ffb020;
+  --danger: #ff5c5c;
+  --info: #4cc9f0;
+
+  --success-soft: rgba(61, 220, 151, 0.14);
+  --warning-soft: rgba(255, 176, 32, 0.14);
+  --danger-soft: rgba(255, 92, 92, 0.14);
+  --info-soft: rgba(76, 201, 240, 0.14);
+
+  /* ---- Tipografía ---- */
+  --font-sans: 'Inter', 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, 'Consolas', monospace;
+
+  --text-2xs: 0.6875rem; /* 11px */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.8125rem;  /* 13px */
+  --text-md: 0.875rem;   /* 14px */
+  --text-lg: 1rem;       /* 16px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.625rem;  /* 26px */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.55;
+
+  /* ---- Espaciado (escala 4px) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ---- Radios ---- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* ---- Elevación ---- */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.55);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* ---- Movimiento ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-instant: 90ms;
+  --dur-fast: 140ms;
+  --dur-normal: 180ms;
+  --dur-slow: 320ms;
+
+  /* ---- Capas ---- */
+  --z-base: 0;
+  --z-overlay: 100;
+  --z-modal: 200;
+  --z-toast: 300;
+
+  /* ---- Layout ---- */
+  --widget-size: 72px;
+  --panel-width: 420px;
+  --panel-height: 600px;
+  --dashboard-width: 1100px;
+  --dashboard-height: 760px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms;
+    --dur-fast: 0ms;
+    --dur-normal: 0ms;
+    --dur-slow: 0ms;
+  }
+}
