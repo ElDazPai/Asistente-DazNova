@@ -14,14 +14,18 @@
       {
         "label": "main",
         "title": "Asistente DazNova",
-        "width": 1000,
-        "height": 700,
-        "minWidth": 380,
-        "minHeight": 480,
-        "resizable": true,
+        "width": 72,
+        "height": 72,
+        "decorations": false,
+        "transparent": true,
+        "shadow": false,
+        "resizable": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "visible": false,
+        "focus": false,
         "center": true,
-        "theme": "Dark",
-        "backgroundColor": "#05070C"
+        "theme": "Dark"
       }
     ],
     "security": {

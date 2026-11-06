@@ -39,7 +39,69 @@ fn backend_status(app: tauri::AppHandle) -> BackendStatus {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![backend_status])
+        .plugin(tauri_plugin_global_shortcut::Builder::new().build())
+        .plugin(tauri_plugin_autostart::init(
+            tauri_plugin_autostart::MacosLauncher::LaunchAgent,
+            None,
+        ))
+        .manage(window::Runtime::default())
+        .manage(ai_engine::AiRuntime::new())
+        .invoke_handler(tauri::generate_handler![
+            backend_status,
+            window::set_window_state,
+            window::get_window_state,
+            window::toggle_window,
+            window::hide_window,
+            window::start_drag,
+            window::is_autostart_enabled,
+            window::set_autostart,
+            ai_engine::get_ai_settings,
+            ai_engine::save_ai_settings,
+            ai_engine::save_api_key,
+            ai_engine::validate_api_key,
+            ai_engine::get_daily_usage,
+            ai_engine::list_conversations,
+            ai_engine::create_conversation,
+            ai_engine::archive_conversation,
+            ai_engine::list_messages,
+            ai_engine::cancel_generation,
+            ai_engine::send_message,
+        ])
+        .setup(|app| {
+            let handle = app.handle().clone();
+
+            match db::init(&handle) {
+                Ok(database) => {
+                    handle.manage(database);
+                }
+                Err(error) => {
+                    eprintln!("[bd] no se pudo abrir: {error}");
+                    return Err(Box::new(std::io::Error::new(
+                        std::io::ErrorKind::Other,
+                        error,
+                    )));
+                }
+            }
+
+            // Ningún fallo de arranque debe impedir que la ventana aparezca:
+            // se registra y se sigue, para que el usuario vea algo y no un proceso mudo.
+            if let Err(error) = window::init(&handle) {
+                eprintln!("[ventana] no se pudo inicializar: {error}");
+            }
+            if let Err(error) = window::shortcut::init(&handle) {
+                eprintln!("[atajo] no se pudo registrar: {error}");
+            }
+            if let Err(error) = window::tray::init(&handle) {
+                eprintln!("[bandeja] no se pudo crear: {error}");
+            }
+
+            Ok(())
+        })
+        .on_window_event(|window, event| {
+            if window.label() == "main" {
+                window::handle_event(window, event);
+            }
+        })
         .run(tauri::generate_context!())
         .expect("error al iniciar Asistente DazNova");
 }

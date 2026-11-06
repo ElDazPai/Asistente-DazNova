@@ -201,7 +201,7 @@ Toolchain instalada: Rust 1.99.1 (MSVC) + Build Tools 17.14.
 - Atajo global `Alt+Shift+Space` que alterna mostrar/ocultar.
 - Indicador de notificaciones en el estado minimizado.
 - Icono en bandeja del sistema con menú (Mostrar / Ocultar / Ajustes / Salir).
-- Autostart configurable (activado por defecto).
+- Autostart configurable desde la bandeja (desactivado por defecto, ver ADR-012).
 
 **Tareas**
 1. Configurar la ventana (`decorations:false`, `transparent:true`, `skipTaskbar:true`, `alwaysOnTop`).

@@ -148,3 +148,35 @@ Vite 8 y `@sveltejs/vite-plugin-svelte` 7 sí se usan en su versión actual.
 
 **Consecuencias.** Se pierde la velocidad del compilador nativo en `npm run check`, que hoy tarda
 menos de 2 s. Revisar al actualizar svelte-check.
+
+---
+
+## ADR-012 — Autostart desactivado por defecto
+
+**Fecha:** 2026-11-06 · **Estado:** Aceptada (revisa la Etapa 1 del plan)
+
+**Contexto.** El plan original decía "activado por defecto". Escribir una entrada de arranque en el
+registro del sistema sin que el usuario lo pida es un comportamiento que se percibe como intrusivo,
+por mucho que el producto quiera estar siempre disponible.
+
+**Decisión.** La integración de autostart está implementada y accesible desde el menú de la bandeja
+(casilla "Iniciar con el sistema"), pero arranca **desactivada**. El usuario la activa con un clic.
+
+**Consecuencias.** Un paso manual la primera vez, a cambio de no tocar el sistema por sorpresa.
+El estado real siempre se lee del SO, nunca de una copia en la base de datos.
+
+---
+
+## ADR-013 — Cristal con CSS en lugar de `window-vibrancy`
+
+**Fecha:** 2026-11-06 · **Estado:** Aceptada
+
+**Contexto.** `window-vibrancy` ya llega como dependencia transitiva de Tauri y permitiría aplicar
+*acrylic* o *mica* nativos en Windows. En ventanas transparentes y sin bordes, el *acrylic* produce
+un efecto de estela al arrastrar, y no se puede validar visualmente de forma automática.
+
+**Decisión.** El efecto de cristal se consigue con `rgba()` + `backdrop-filter` sobre una ventana
+transparente. Se reevalúa el *acrylic* nativo en la Etapa 8 (acabado), con la app ya en uso real.
+
+**Consecuencias.** Aspecto consistente en Windows y Linux y cero riesgo de artefactos. Coste: el
+desenfoque del escritorio real no existe; se ve el fondo a través de una capa semitransparente.

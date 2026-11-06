@@ -14,11 +14,21 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2", features = [] }
+tauri = { version = "2", features = ["tray-icon"] }
 tauri-plugin-opener = "2"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-autostart = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 thiserror = "2"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+futures-util = "0.3"
+keyring = "3"
+r2d2 = "0.8"
+r2d2_sqlite = "0.25"
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+uuid = { version = "1", features = ["v4"] }
 
 # Perfil de release orientado a tamaño y arranque rápido.
 [profile.release]
