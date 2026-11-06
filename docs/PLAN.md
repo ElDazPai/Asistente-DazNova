@@ -175,10 +175,14 @@ Se crea completo en la Etapa 3, pero se define aquí para que las etapas 2, 4 y 
 6. Primer commit: "chore: scaffold Tauri 2 + Svelte 5".
 
 **Criterio de salida**
-- [ ] `npm run tauri dev` abre una ventana sin errores en consola.
-- [ ] `cargo build` en `src-tauri/` termina sin warnings bloqueantes.
-- [ ] `npm run build` genera el bundle del frontend.
-- [ ] El repo no contiene secretos ni la base de datos.
+- [x] `npm run tauri dev` abre una ventana sin errores en consola.
+- [x] `cargo build` en `src-tauri/` termina sin warnings bloqueantes.
+- [x] `npm run build` genera el bundle del frontend.
+- [x] El repo no contiene secretos ni la base de datos.
+
+**Verificado el 2026-11-06:** ventana "Asistente DazNova" abierta, 24,9 MB de RAM en reposo,
+`cargo check` y `cargo build` en verde, `svelte-check` 0 errores, bundle de 36 kB.
+Toolchain instalada: Rust 1.99.1 (MSVC) + Build Tools 17.14.
 
 **🔑 Llave:** *el entorno compila y arranca en limpio*. Sin esto verde, cada etapa posterior se convierte en depuración de infraestructura.
 
@@ -467,7 +471,7 @@ Se crea completo en la Etapa 3, pero se define aquí para que las etapas 2, 4 y 
 
 | Etapa | Estado | Cerrada el | Notas |
 |---|---|---|---|
-| 0 — Cimientos | ⬜ Pendiente | — | — |
+| 0 — Cimientos | ✅ Cerrada | 2026-11-06 | Tauri 2.12.4 · Svelte 5.57 · Vite 8.3 · TS 5.9 |
 | 1 — Shell / widget | ⬜ Pendiente | — | — |
 | 2 — Núcleo IA + chat | ⬜ Pendiente | — | — |
 | 3 — Memoria | ⬜ Pendiente | — | — |

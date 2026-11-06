@@ -133,3 +133,18 @@ Coste: los componentes base (botón, panel, input) se escriben a mano.
 
 **Consecuencias.** Sin colisiones conocidas en Windows/Linux. Se avisa al usuario si otro programa
 ya lo ocupa.
+
+---
+
+## ADR-011 — TypeScript 5.9 en lugar de 7
+
+**Fecha:** 2026-11-06 · **Estado:** Aceptada
+
+**Contexto.** TypeScript 7 (compilador nativo) ya está publicado, pero `svelte-check` 4.7.8 declara
+como peer `typescript: ^5 || ^6`. Instalar TS 7 rompería la verificación de tipos del proyecto.
+
+**Decisión.** Fijar `typescript ~5.9.3` hasta que `svelte-check` (o su sucesor) soporte TS 7.
+Vite 8 y `@sveltejs/vite-plugin-svelte` 7 sí se usan en su versión actual.
+
+**Consecuencias.** Se pierde la velocidad del compilador nativo en `npm run check`, que hoy tarda
+menos de 2 s. Revisar al actualizar svelte-check.
